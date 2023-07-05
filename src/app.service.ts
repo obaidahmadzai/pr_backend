@@ -11,7 +11,6 @@ export class AppService {
 
 
   getReport(type:string, id:string) {
-    console.log(type,id);
     return data.report.filter((report) =>  report.type ===  type).find((report) =>  report.id === id);
  
   }
