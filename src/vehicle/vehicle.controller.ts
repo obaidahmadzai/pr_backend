@@ -16,8 +16,11 @@ export class VehicleController {
     return this.vehicleService.getVehicle(id);
   }
 
+  
+
   @Post()
   createVehicle(@Body() vehicleDto: VehicleDto) {
+   
     try {
       return this.vehicleService.createVehicle(vehicleDto);
     } catch (error) {
