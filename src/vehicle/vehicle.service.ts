@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { VehicleDto } from './vehicle.dto';
+import { SearchDto } from 'src/common/dto/SearchDto';
+const searchColumns = ['make', 'model', 'color', 'registrationNumber'];
 @Injectable()
 export class VehicleService {
  
@@ -46,4 +48,32 @@ export class VehicleService {
       }
     })
   }
+  async searchVehicle(param: SearchDto) {
+    return this.prismaService.vehicle.findMany({
+      where: {
+        OR:  searchColumns.map(column => ({
+          
+             [column]: {
+               contains: param.search,
+               mode: 'insensitive'
+             }
+           }))
+      },
+      
+        include :{
+          container: true
+        }
+      
+      
+    });
+  }
 }
+
+
+//search
+// searchColumns.map(column => ({
+//   [column]: {
+//     contains: param.search,
+//     mode: 'insensitive'
+//   }
+// }))

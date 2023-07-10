@@ -1,6 +1,7 @@
-import { Controller, Get, Post,Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post,Put, Delete, Body, Param, Query } from '@nestjs/common';
 import { VehicleService } from './vehicle.service';
 import { VehicleDto } from './vehicle.dto';
+import { SearchDto } from 'src/common/dto/SearchDto';
 @Controller('vehicle')
 export class VehicleController {
   constructor(private readonly vehicleService: VehicleService) {}
@@ -46,4 +47,13 @@ export class VehicleController {
         throw error;
       }
     }
+    @Get('/search/query')
+    searchvehicle(@Query()  query:SearchDto){
+    
+      try {
+        return this.vehicleService.searchVehicle(query);
+      } catch (error) {
+        throw error;
+      }
+     }
 }
