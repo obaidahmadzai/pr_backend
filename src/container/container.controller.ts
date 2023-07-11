@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put,Query } from '@nestjs/common';
 import { ContainerService } from './container.service';
 import { CreateContainerDto } from './dto/create-container.dto';
 import { UpdateContainerDto } from './dto/update-container.dto';
+import { SearchDto } from 'src/common/dto/SearchDto';
 
 @Controller('container')
 export class ContainerController {
@@ -31,4 +32,13 @@ export class ContainerController {
   remove(@Param('id') id: string) {
     return this.containerService.remove(+id);
   }
+  @Get('/search/query')
+  searchvehicle(@Query()  query:SearchDto){
+  
+    try {
+      return this.containerService.searchVehicle(query);
+    } catch (error) {
+      throw error;
+    }
+   }
 }
