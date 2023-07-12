@@ -4,10 +4,10 @@ import { AppService } from './app.service';
 import { VehicleModule } from './vehicle/vehicle.module';
 import { ContainerModule } from './container/container.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+
 
 @Module({
-  imports: [VehicleModule, ContainerModule, AuthModule, UsersModule],
+  imports: [VehicleModule, ContainerModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
